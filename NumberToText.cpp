@@ -1,10 +1,13 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <string>
+
 using namespace std;
 
-vector<string> place = {"", "Thousands", "Millions", "Billions"};
-map<int, string> mainNTxt = {{0, ""}, {1, "one"}, {2, "two"}, {3, "three"}, {4, "four"}, {5, "five"}, {6, "six"}, {7, "seven"}, {8, "eight"}, {9, "nine"}, {10, "ten"}, {11, "eleven"}, {12, "twelve"}, {13, "thirteen"}, {14, "fourteen"}, {15, "fifteen"}, {16, "sixteen"}, {17, "seventeen"}, {18, "eighteen"}, {19, "nineteen"}, {20, "twenty"}, {30, "thirty"}, {40, "forty"}, {50, "fifty"}, {60, "sixty"}, {70, "seventy"}, {80, "eighty"}, {90, "ninety"}};
+vector<string> place = {"", "Thousand", "Million", "Billion"};
+
+map<int, string> mainNTxt = {{0, ""}, {1, "One"}, {2, "Two"}, {3, "Three"}, {4, "Four"}, {5, "Five"}, {6, "Six"}, {7, "Seven"}, {8, "Eight"}, {9, "Nine"}, {10, "Ten"}, {11, "Eleven"}, {12, "Twelve"}, {13, "Thirteen"}, {14, "Fourteen"}, {15, "Fifteen"}, {16, "Sixteen"}, {17, "Seventeen"}, {18, "Eighteen"}, {19, "Nineteen"}, {20, "Twenty"}, {30, "Thirty"}, {40, "Forty"}, {50, "Fifty"}, {60, "Sixty"}, {70, "Seventy"}, {80, "Eighty"}, {90, "Ninety"}};
 
 long long readNum(string message)
 {
@@ -17,6 +20,8 @@ long long readNum(string message)
 
 string numToText(long long num)
 {
+    if (num == 0) return "Zero";
+
     vector<int> treplits;
 
     short treplit;
@@ -30,12 +35,15 @@ string numToText(long long num)
     string Numstr;
     for (int i = treplits.size() - 1; i >= 0; --i)
     {
+        if (treplits[i] == 0) continue;
+
         int hundreds = treplits[i] / 100;
         int tens = (treplits[i] / 10) % 10;
         int units = treplits[i] % 10;
 
         auto it = mainNTxt.find(treplits[i] % 100);
-        Numstr += (mainNTxt[hundreds] + ((hundreds != 0) ? " hundreds" : "") + ((hundreds != 0 && (tens | units != 0)) ? " " : "") + ((it != mainNTxt.end()) ? it->second : (mainNTxt[tens * 10] + ((tens != 0) ? " " : "") + mainNTxt[units]))) + " " + place[i] + " ";
+
+        Numstr += (mainNTxt[hundreds] + ((hundreds != 0) ? " hundred" : "") + ((hundreds != 0 && (tens != 0 || units != 0)) ? " " : "") + ((it != mainNTxt.end()) ? it->second : (mainNTxt[tens * 10] + ((tens != 0) ? " " : "") + mainNTxt[units]))) + (place[i].empty() ? "" : " " + place[i]) + " ";
     }
 
     return Numstr;
@@ -45,8 +53,7 @@ void runSystem()
 {
     long long num = readNum("Enter a number to get it in a text form: ");
 
-    cout << "\n"
-         << numToText(num);
+    cout << "\n" << numToText(num);
 }
 
 int main()
