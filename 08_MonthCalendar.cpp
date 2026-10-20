@@ -73,7 +73,7 @@ void displayMonthCalendar(short year, short month)
     cout << "  _______________" << monthName[month] << "_______________  \n\n";
     cout << "  Sun  Mon  Tue  Wed  Thu  Fri  Sat  \n";
 
-    for (int i = 0; i < monthCalendar.size() && !(i == 5 && monthCalendar[5][0] == 0); ++i)
+    for (int i = 0; i < monthCalendar.size() && !(i > 0 && monthCalendar[i][0] == 0); ++i)
     {
         for (int j = 0; j < monthCalendar[0].size(); ++j)
             if (monthCalendar[i][j] != 0)
