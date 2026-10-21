@@ -49,9 +49,9 @@ dateS readDate()
     return date;
 }
 
-bool isLastMonth(dateS date1)
+bool isLastMonth(short month)
 {
-    return date1.month == 12;
+    return month == 12;
 }
 
 bool isLastDay(dateS date)
@@ -65,6 +65,6 @@ int main()
     dateS date = readDate();
 
     cout << (isLastDay(date) ? "Yes" : "No") << ", input day is " << (isLastDay(date) ? "" : "not ") << "The last Day in month.\n";
-    cout << (isLastMonth(date) ? "Yes" : "No") << ", input month is " << (isLastMonth(date) ? "" : "not ") << "The last month in year.";
+    cout << (isLastMonth(date.month) ? "Yes" : "No") << ", input month is " << (isLastMonth(date.month) ? "" : "not ") << "The last month in year.";
     return 0;
 }
