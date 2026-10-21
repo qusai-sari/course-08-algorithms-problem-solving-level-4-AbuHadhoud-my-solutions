@@ -58,18 +58,49 @@ unsigned short allDaysFromBeginningOfYear(dateS date)
     return sum + date.day;
 }
 
-unsigned short twoDatesDiff(dateS date1, dateS date2, bool isLastDayInclusive = 1)
+bool isDate1BeforeThan2(dateS date1, dateS date2)
 {
-    return abs(allDaysFromBeginningOfYear(date2) - allDaysFromBeginningOfYear(date1)) + isLastDayInclusive;
+    return (date1.year < date2.year) || ((date1.year == date2.year) && ((date1.month < date2.month) || (date1.month == date2.month) && (date1.day < date2.day)));
+}
+
+unsigned int twoDatesDiff(dateS date1, dateS date2, bool isLastDayExclusive = 0)
+{
+    unsigned int diff = 0;
+    
+    if (date1.year < date2.year)
+    {
+        dateS tempDate = date1;
+        tempDate.month = 12;
+        tempDate.day = 31;
+        diff += allDaysFromBeginningOfYear(tempDate) - allDaysFromBeginningOfYear(date1) + 1;
+
+        ++tempDate.year;
+        while (tempDate.year < date2.year)
+        {
+            diff += allDaysFromBeginningOfYear(tempDate);
+            ++tempDate.year;
+        }
+        
+        diff += allDaysFromBeginningOfYear(date2) - isLastDayExclusive;
+    }
+    else if (date1.year == date2.year && isDate1BeforeThan2(date1, date2))
+    {
+        diff = allDaysFromBeginningOfYear(date2) - allDaysFromBeginningOfYear(date1) + 1 - isLastDayExclusive;
+    }
+    else
+    {
+        diff = twoDatesDiff(date2, date1, isLastDayExclusive);
+    }
+
+    return diff;
 }
 
 int main()
 {
-
     dateS date1 = readDate();
     dateS date2 = readDate();
 
-    cout << "Difference is: " << twoDatesDiff(date1, date2, false) << " Day(s).\n";
+    cout << "Difference is: " << twoDatesDiff(date1, date2, true) << " Day(s).\n";
     cout << "Difference (including end day) is: " << twoDatesDiff(date1, date2) << " Day(s).\n";
     return 0;
 }
