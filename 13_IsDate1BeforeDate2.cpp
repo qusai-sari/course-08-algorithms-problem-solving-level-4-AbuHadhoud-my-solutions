@@ -49,15 +49,6 @@ dateS readDate()
     return date;
 }
 
-unsigned short allDaysFromBeginningOfYear(dateS date)
-{
-    unsigned short sum = 0;
-    for (int i = 1; i < date.month; ++i)
-        sum += daysInMonth(date.year, i);
-
-    return sum + date.day;
-}
-
 bool isDate1BeforeThan2(dateS date1, dateS date2)
 {
     return (date1.year < date2.year) || ((date1.year == date2.year) && ((date1.month < date2.month) || (date1.month == date2.month) && (date1.day < date2.day)));
