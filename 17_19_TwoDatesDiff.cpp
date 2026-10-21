@@ -63,9 +63,9 @@ bool isDate1BeforeThan2(dateS date1, dateS date2)
     return (date1.year < date2.year) || ((date1.year == date2.year) && ((date1.month < date2.month) || (date1.month == date2.month) && (date1.day < date2.day)));
 }
 
-unsigned int twoDatesDiff(dateS date1, dateS date2, bool isLastDayExclusive = 0)
+int twoDatesDiff(dateS date1, dateS date2, bool isLastDayExclusive = 0)
 {
-    unsigned int diff = 0;
+    int diff = 0;
     
     if (date1.year < date2.year)
     {
@@ -89,7 +89,7 @@ unsigned int twoDatesDiff(dateS date1, dateS date2, bool isLastDayExclusive = 0)
     }
     else
     {
-        diff = twoDatesDiff(date2, date1, isLastDayExclusive);
+        diff = -twoDatesDiff(date2, date1, isLastDayExclusive);
     }
 
     return diff;
