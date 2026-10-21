@@ -32,7 +32,7 @@ unsigned short daysInMonth(short year, short month)
     return days[month] + (month == 2 && leapYear(year));
 }
 
-unsigned short allDaysToMonthNum(short year, short month, short day)
+unsigned short allDaysFromBeginningOfYear(short year, short month, short day)
 {
     unsigned short sum = 0;
     for (int i = 1; i < month; ++i)
@@ -47,7 +47,7 @@ int main()
     short month = readNum("Please, enter a month: ", 1, 12);
     short day = readNum("Please, enter a day: ", 1, daysInMonth(year, month));
 
-    cout << "\nNumber of days from the beginning of the year is " << allDaysToMonthNum(year, month, day);
+    cout << "\nNumber of days from the beginning of the year is " << allDaysFromBeginningOfYear(year, month, day);
 
     return 0;
 }

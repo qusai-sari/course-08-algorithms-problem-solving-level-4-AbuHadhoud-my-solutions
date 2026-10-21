@@ -38,7 +38,7 @@ struct dateS
     short year, month, day;
 };
 
-unsigned short allDaysToMonthNum(dateS date)
+unsigned short allDaysFromBeginningOfYear(dateS date)
 {
     unsigned short sum = 0;
     for (int i = 1; i < date.month; ++i)
