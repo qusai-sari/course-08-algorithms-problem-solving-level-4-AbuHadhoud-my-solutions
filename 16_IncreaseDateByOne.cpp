@@ -59,7 +59,7 @@ bool isLastDay(dateS date)
     return date.day == daysInMonth(date.year, date.month);
 }
 
-dateS increaseDateByOne(dateS date)
+dateS increaseDateByOneDay(dateS date)
 {
     if (isLastDay(date))
     {
@@ -86,7 +86,7 @@ int main()
 {
 
     dateS date = readDate();
-    date = increaseDateByOne(date);
+    date = increaseDateByOneDay(date);
     cout << "\nDate after adding one day is: " << date.day << "/" << date.month << "/" << date.year;
     return 0;
 }
