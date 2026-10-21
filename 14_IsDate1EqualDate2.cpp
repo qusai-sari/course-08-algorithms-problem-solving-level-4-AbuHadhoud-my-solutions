@@ -49,7 +49,7 @@ dateS readDate()
     return date;
 }
 
-bool sDate1EqualDate2(dateS date1, dateS date2)
+bool isDate1EqualDate2(dateS date1, dateS date2)
 {
     return date1.year == date2.year && date1.month == date2.month && date1.day == date2.day;
 }
@@ -60,6 +60,6 @@ int main()
     dateS date1 = readDate();
     dateS date2 = readDate();
 
-    cout << (sDate1EqualDate2(date1, date2) ? "Yes" : "No") << ", Date1 is " << (sDate1EqualDate2(date1, date2) ? "" : "not ") << "equal to Date2.";
+    cout << (isDate1EqualDate2(date1, date2) ? "Yes" : "No") << ", Date1 is " << (isDate1EqualDate2(date1, date2) ? "" : "not ") << "equal to Date2.";
     return 0;
 }
