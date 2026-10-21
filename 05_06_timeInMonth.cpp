@@ -4,7 +4,7 @@
 
 using namespace std;
 
-short readNum(const string &message, short smallest = -35000, short biggest = 35000)
+short readNum(const string &message, short smallest = -30500, short biggest = 30500)
 {
     short num;
     while (true)
