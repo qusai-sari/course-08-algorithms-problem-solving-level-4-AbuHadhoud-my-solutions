@@ -83,7 +83,7 @@ unsigned short allDaysFromBeginningOfYear(dateS date)
     return sum + date.day;
 }
 
-bool isDate1BeforeThan2(dateS date1, dateS date2)
+bool isDate1BeforeDate2(dateS date1, dateS date2)
 {
     return (date1.year < date2.year) || ((date1.year == date2.year) && ((date1.month < date2.month) || (date1.month == date2.month) && (date1.day < date2.day)));
 }
@@ -108,7 +108,7 @@ int twoDatesDiff(dateS date1, dateS date2, bool isLastDayExclusive = 0)
 
         diff += allDaysFromBeginningOfYear(date2) - isLastDayExclusive;
     }
-    else if (date1.year == date2.year && isDate1BeforeThan2(date1, date2))
+    else if (date1.year == date2.year && isDate1BeforeDate2(date1, date2))
     {
         diff = allDaysFromBeginningOfYear(date2) - allDaysFromBeginningOfYear(date1) + 1 - isLastDayExclusive;
     }
@@ -147,8 +147,8 @@ dateS vacationEndDate(dateS date, short vacDays)
     while (vacDays > 0)
     {
         if (dayOrder(date) < 5)
-        --vacDays;
-        
+            --vacDays;
+
         date = increaseDateByNDays(date, 1);
     }
     return date;
