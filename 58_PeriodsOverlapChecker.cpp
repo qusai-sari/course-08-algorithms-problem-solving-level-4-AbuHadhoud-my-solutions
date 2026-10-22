@@ -61,7 +61,6 @@ bool isDate1EqualDate2(dateS date1, dateS date2)
 
 enum enCompareDatesResults {BEFORE = -1, EQUAL = 0, AFTER = 1};
 
-
 enCompareDatesResults compare2Dates(dateS date1, dateS date2)
 {
     return (isDate1BeforeDate2(date1, date2)? enCompareDatesResults::BEFORE : isDate1EqualDate2(date1, date2) ? enCompareDatesResults::EQUAL : enCompareDatesResults::AFTER);
