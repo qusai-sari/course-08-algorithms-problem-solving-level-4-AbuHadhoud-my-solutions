@@ -49,12 +49,12 @@ bool isEndOfWeek(unsigned short dayOrderVal)
 
 bool isWeekend(unsigned short dayOrderVal)
 {
-    return dayOrderVal == 5;
+    return dayOrderVal == 5 || dayOrderVal == 6;
 }
 
 bool isBussinessDay(unsigned short dayOrderVal)
 {
-    return dayOrderVal != 5;
+    return !isWeekend(dayOrderVal);
 }
 
 unsigned short daysUntilEndOfWeek(unsigned short dayOrderVal)
