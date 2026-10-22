@@ -90,7 +90,7 @@ periodS readPeriod()
     return p;
 }
 
-bool arePeriodsOperlapped(periodS p1, periodS p2)
+bool arePeriodsOverlapped(periodS p1, periodS p2)
 {
     return !(compare2Dates(p1.startD, p2.endD) == enCompareDatesResults::AFTER || compare2Dates(p1.endD, p2.startD) == enCompareDatesResults::BEFORE);
 }
@@ -101,6 +101,6 @@ int main()
     periodS p1 = readPeriod();
     periodS p2 = readPeriod();
 
-    cout << (arePeriodsOperlapped(p1, p2) ? "Yes" : "No") << ", periods " << (arePeriodsOperlapped(p1, p2) ? "" : "don't ") << "overlap.";
+    cout << (arePeriodsOverlapped(p1, p2) ? "Yes" : "No") << ", periods " << (arePeriodsOverlapped(p1, p2) ? "" : "don't ") << "overlap.";
     return 0;
 }

@@ -90,7 +90,7 @@ periodS readPeriod()
     return p;
 }
 
-bool arePeriodsOperlapped(periodS p1, periodS p2)
+bool arePeriodsOverlapped(periodS p1, periodS p2)
 {
     return !(compare2Dates(p1.startD, p2.endD) == enCompareDatesResults::AFTER || compare2Dates(p1.endD, p2.startD) == enCompareDatesResults::BEFORE);
 }
@@ -101,7 +101,7 @@ bool isDateWithinPeriod(periodS p, dateS date)
     periodS temp;
     temp.startD = date;
     temp.endD = date;
-    return arePeriodsOperlapped(temp, p);
+    return arePeriodsOverlapped(temp, p);
 }
 
 int main()
