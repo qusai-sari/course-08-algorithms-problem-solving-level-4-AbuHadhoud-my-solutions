@@ -87,10 +87,8 @@ dateS increaseDateByNWeeks(dateS date, unsigned short weeks)
 }
 
 dateS increaseDateByOneMonth(dateS date)
-{
-    ++date.month;
-    
-    if (date.month > 12)
+{    
+    if (++date.month > 12)
     {
         date.month = 1;
         ++date.year;
