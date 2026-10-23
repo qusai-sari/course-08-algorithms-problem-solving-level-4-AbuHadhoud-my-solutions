@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <map>
+#include <string>
 
 using namespace std;
 
@@ -35,7 +35,7 @@ unsigned short daysInMonth(short year, short month)
 {
     if (month < 1 || month > 12)
         return 0;
-    int days[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int days[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     return days[month] + (month == 2 && leapYear(year));
 }
 
@@ -87,24 +87,18 @@ dateS readDate()
     return date;
 }
 
-string formatDate(dateS date, string format, bool isInTextForm = false)
+string formatDate(dateS date, string format)
 {
-    if (isInTextForm)
-        return "Day:" + to_string(date.day) + ", Month:" + to_string(date.month) + ", Year:" + to_string(date.year);
+    short findDD = format.find("dd");
+    format = format.substr(0, findDD) + to_string(date.day) + ((findDD + 2 < format.length()) ? format.substr(findDD + 2) : "");
+    
+    short findMM = format.find("mm");
+    format = format.substr(0, findMM) + to_string(date.month) + ((findMM + 2 < format.length()) ? format.substr(findMM + 2) : "");
+    
+    short findYYYY = format.find("yyyy");
+    format = format.substr(0, findYYYY) + to_string(date.year) + ((findYYYY + 4 < format.length()) ? format.substr(findYYYY + 4) : "");
 
-    map<string, short> setter = {{"dd", date.day}, {"mm", date.month}, {"yyyy", date.year}};
-
-    bool backSlash = true;
-    for (char ch : format)
-        if (ch == '-')
-        {
-            backSlash = false;
-            break;
-        }
-
-    vector<string> splitFormat = splitStr(format, ((backSlash) ? '/' : '-'));
-
-    return to_string(setter[splitFormat[0]]) + ((backSlash) ? '/' : '-') + to_string(setter[splitFormat[1]]) + ((backSlash) ? '/' : '-') + to_string(setter[splitFormat[2]]);
+    return format;
 }
 
 int main()
@@ -113,20 +107,20 @@ int main()
 
     string strD = formatDate(date, "dd/mm/yyyy");
     cout << strD << "\n\n";
-    
+
     strD = formatDate(date, "yyyy/dd/mm");
     cout << strD << "\n\n";
-    
+
     strD = formatDate(date, "mm/dd/yyyy");
     cout << strD << "\n\n";
-    
+
     strD = formatDate(date, "mm-dd-yyyy");
     cout << strD << "\n\n";
-    
+
     strD = formatDate(date, "dd-mm-yyyy");
     cout << strD << "\n\n";
-    
-    strD = formatDate(date, "", true);
+
+    strD = formatDate(date, "Day:dd, Month:mm, Year:yyyy");
     cout << strD << "\n\n";
     return 0;
 }
