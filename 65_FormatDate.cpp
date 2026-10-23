@@ -35,7 +35,7 @@ unsigned short daysInMonth(short year, short month)
 {
     if (month < 1 || month > 12)
         return 0;
-    int days[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    int days[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     return days[month] + (month == 2 && leapYear(year));
 }
 
@@ -90,12 +90,18 @@ dateS readDate()
 string formatDate(dateS date, string format)
 {
     short findDD = format.find("dd");
+    if (findDD == -1) return "";
+
     format = format.substr(0, findDD) + to_string(date.day) + ((findDD + 2 < format.length()) ? format.substr(findDD + 2) : "");
-    
+
     short findMM = format.find("mm");
+    if (findMM == -1) return "";
+
     format = format.substr(0, findMM) + to_string(date.month) + ((findMM + 2 < format.length()) ? format.substr(findMM + 2) : "");
-    
+
     short findYYYY = format.find("yyyy");
+    if (findYYYY == -1) return "";
+
     format = format.substr(0, findYYYY) + to_string(date.year) + ((findYYYY + 4 < format.length()) ? format.substr(findYYYY + 4) : "");
 
     return format;
