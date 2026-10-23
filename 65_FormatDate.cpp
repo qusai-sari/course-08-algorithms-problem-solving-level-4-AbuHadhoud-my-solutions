@@ -91,18 +91,15 @@ string formatDate(dateS date, string format)
 {
     short findDD = format.find("dd");
     if (findDD == -1) return "";
-
-    format = format.substr(0, findDD) + to_string(date.day) + ((findDD + 2 < format.length()) ? format.substr(findDD + 2) : "");
+    format = format.replace(findDD, 2, to_string(date.day));
 
     short findMM = format.find("mm");
     if (findMM == -1) return "";
-
-    format = format.substr(0, findMM) + to_string(date.month) + ((findMM + 2 < format.length()) ? format.substr(findMM + 2) : "");
+    format = format.replace(findMM, 2, to_string(date.month));
 
     short findYYYY = format.find("yyyy");
     if (findYYYY == -1) return "";
-
-    format = format.substr(0, findYYYY) + to_string(date.year) + ((findYYYY + 4 < format.length()) ? format.substr(findYYYY + 4) : "");
+    format = format.replace(findYYYY, 4, to_string(date.year));
 
     return format;
 }
