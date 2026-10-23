@@ -126,7 +126,7 @@ bool isDateWithinPeriod(dateS date, periodS p)
 unsigned int countOverlapDays(periodS p1, periodS p2)
 {
     unsigned int count = 0;
-    while (compare2Dates(p1.startD, p1.endD) != enCompareDatesResults::EQUAL && arePeriodsOverlapped(p1, p2))
+    while (compare2Dates(p1.startD, p1.endD) != enCompareDatesResults::AFTER && arePeriodsOverlapped(p1, p2))
     {
         if (isDateWithinPeriod(p1.startD, p2))
             ++count;
