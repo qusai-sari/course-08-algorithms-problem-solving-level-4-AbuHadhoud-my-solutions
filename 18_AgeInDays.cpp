@@ -78,7 +78,7 @@ unsigned int twoDatesDiff(dateS date1, dateS date2, bool isLastDayExclusive = 0)
         ++tempDate.year;
         while (tempDate.year < date2.year)
         {
-            diff += allDaysFromBeginningOfYear(tempDate);
+            diff += 365 + leapYear(tempDate.year);
             ++tempDate.year;
         }
 
