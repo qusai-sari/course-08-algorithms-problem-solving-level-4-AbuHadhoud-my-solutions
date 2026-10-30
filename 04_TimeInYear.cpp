@@ -1,5 +1,5 @@
 #include <iostream>
-#include <array>
+#include <vector>
 #include <iomanip>
 
 using namespace std;
@@ -18,15 +18,15 @@ bool leapYear(int year)
     return (year % 4 == 0) && (year % 100 != 0 || (year % 400 == 0));
 }
 
-array<int, 4> timeInYear(short year)
-{    
-    unsigned short days  = 365   + leapYear(year);
-    unsigned short hours = days  * 24;
-    unsigned int   mins  = hours * 60;
-    unsigned int   secs  = mins  * 60;
+static vector<unsigned int> timeInYear(short year)
+{
+	unsigned short days = 365 + leapYear(year);
+	unsigned short hours = days * 24;
+	unsigned int   mins = hours * 60;
+	unsigned int   secs = mins * 60;
 
-    array<int, 4> time = {days, hours, mins, secs};
-    return time;
+	vector<unsigned int> time = { days, hours, mins, secs };
+	return time;
 }
 
 int main()

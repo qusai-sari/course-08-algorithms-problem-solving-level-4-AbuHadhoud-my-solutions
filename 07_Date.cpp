@@ -50,7 +50,7 @@ unsigned short dayOrder(short year, short month, short day)
 string dayName(unsigned short dayOrder)
 {
     string dayNames[7]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-    return dayNames[dayOrder];
+    return dayNames[dayOrder % 7];
 }
 
 int main()
